@@ -1,0 +1,38 @@
+AUthentication
+__________________
+
+1) Open web.config in the root directory.
+
+2)Inside <System.Web> tag in web.config add the following 
+
+      <authentication mode="Forms">
+      <forms loginUrl="~/Views/Authentication/Login.aspx" defaultUrl="ViewEmployees.aspx">        
+      </forms>      
+    </authentication>
+
+    <authorization>
+      <deny users="?"/>
+    </authorization>
+
+
+
+loginUrl - specifies the path of your login page. If the user is not authenticated 
+it will redirect to login page.
+
+<deny users="?"/> - Means that don't allow anonymous users to access to your webforms.
+
+
+The issue with this approach is that even login.aspx and register.aspx pages will not be shown to end user.
+
+3.Inorder to show register and login pages you need to add a new web.config file in the folder where these pages are.
+
+
+4.Inside <System.Web> tag in the newly added web.config add the following 
+     <authorization>
+      <allow users="*"/>
+    </authorization>
+
+
+
+The above tags means that anonymous users can access the login and register page.
+
